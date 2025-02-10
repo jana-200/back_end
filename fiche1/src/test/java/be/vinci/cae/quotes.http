@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:8080
+
+### Get the standard message
+GET {{baseUrl}}/quotes/
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+
+%}
