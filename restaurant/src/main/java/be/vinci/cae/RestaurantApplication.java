@@ -1,4 +1,4 @@
-package be.vinci.cae.restaurant;
+package be.vinci.cae;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
