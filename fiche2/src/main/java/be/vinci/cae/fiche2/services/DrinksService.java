@@ -34,14 +34,12 @@ public class DrinksService {
         Drink existingDrink = drinksRepository.findById(id).orElse(null);
 
         if (existingDrink != null) {
-            // Mise à jour du drink existant
             existingDrink.setName(drink.getName());
             existingDrink.setDescription(drink.getDescription());
             existingDrink.setPrice(drink.getPrice());
             existingDrink.setAlcoholic(drink.getAlcoholic());
             return drinksRepository.save(existingDrink);
         } else {
-            // Création d'un nouveau drink avec l'ID fourni
             return drinksRepository.save(drink);
         }
     }
