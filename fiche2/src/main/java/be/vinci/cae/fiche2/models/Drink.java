@@ -23,6 +23,7 @@ public class Drink {
     private String description;
     private float price;
     private Boolean alcoholic;
+
     @ManyToOne
     @JsonBackReference
     private FoodTruck foodTruck;

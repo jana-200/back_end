@@ -2,7 +2,7 @@
 @baseUrl = http://localhost:8080
 
 ### Get the standard message
-GET {{baseUrl}}/drinks/
+GET {{baseUrl}}/drinks
 
 > {%
     client.test("Request executed successfully", function() {
@@ -14,7 +14,7 @@ GET {{baseUrl}}/drinks/
         client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
     });
 
-    client.test("Should return all drinkss", function() {
+    client.test("Should return all drinks", function() {
         var body = response.body
         console.log(body);
         client.assert(body.length == 4, "Should return 4 drinks");
@@ -34,21 +34,24 @@ GET {{baseUrl}}/drinks/1
 %}
 
 ### Create a new drink
-POST {{baseUrl}}/drinks/
+POST {{baseUrl}}/drinks
 Content-Type: application/json
 
 {
+
   "name": "Coke",
   "price": "1.50",
   "description": "Yum Coke",
   "alcoholic": false
 }
 
+
 ### Update a drink
 PUT {{baseUrl}}/drinks/5
 Content-Type: application/json
 
 {
+
   "name": "Pepsi",
   "price": "1.50",
   "description": "Yum Yum Pepsi",
@@ -59,9 +62,9 @@ Content-Type: application/json
 
     client.test("Should update the drink name", function() {
         var body = response.body
-        console.log(body);
+        console.log("id",body.id);
         client.assert(body.id == "5", "Should be id 1");
-        client.assert(body.name == "Pepsi", "Should be id Pepsi");
+        client.assert(body.name == "Pepsi", "Should be Pepsi");
     });
 %}
 

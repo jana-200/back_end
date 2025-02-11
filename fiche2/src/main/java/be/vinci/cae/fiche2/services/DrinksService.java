@@ -14,8 +14,11 @@ public class DrinksService {
         this.drinksRepository = drinksRepository;
     }
 
-    public Iterable<Drink> getAllDrinks() {
-        return drinksRepository.findAll();
+    public Iterable<Drink> getAllDrinks(String name) {
+        if (name == null || name.isEmpty()) {
+            return drinksRepository.findAll();
+        }
+        return drinksRepository.findByName(name);
     }
 
     public Drink getDrink(long id) {
@@ -25,6 +28,22 @@ public class DrinksService {
 
     public Drink createDrink(Drink drink) {
         return drinksRepository.save(drink);
+    }
+
+    public Drink updateDrink(long id,Drink drink) {
+        Drink existingDrink = drinksRepository.findById(id).orElse(null);
+
+        if (existingDrink != null) {
+            // Mise à jour du drink existant
+            existingDrink.setName(drink.getName());
+            existingDrink.setDescription(drink.getDescription());
+            existingDrink.setPrice(drink.getPrice());
+            existingDrink.setAlcoholic(drink.getAlcoholic());
+            return drinksRepository.save(existingDrink);
+        } else {
+            // Création d'un nouveau drink avec l'ID fourni
+            return drinksRepository.save(drink);
+        }
     }
 
     public void deleteDrink(long id) {
